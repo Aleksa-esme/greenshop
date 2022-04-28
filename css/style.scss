@@ -1,0 +1,15 @@
+$width: 1200px;
+$color_accent: #46A358;
+$color_text_main: #3D3D3D;
+$color_text_addl: #727272;
+$color_text_light: #ACACAC;
+* {
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+}
+
+.main-container {
+    width: $width;
+    margin: 0 auto;
+}

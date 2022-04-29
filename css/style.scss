@@ -1,15 +1,455 @@
+@font-face {
+    font-family: "CeraPro";
+    src: 
+        url("../fonts/CeraPro-Regular.eot") format("eot"),
+        url("../fonts/CeraPro-Regular.woff2") format("woff2"),
+        url("../fonts/CeraPro-Regular.woff") format("woff"),
+        url("../fonts/CeraPro-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "HangedLetters";
+    src: url("../fonts/HangedLetters.ttf") format("truetype");
+}
+
 $width: 1200px;
 $color_accent: #46A358;
 $color_text_main: #3D3D3D;
 $color_text_addl: #727272;
 $color_text_light: #ACACAC;
+
+
 * {
     margin: 0;
     padding: 0;
     line-height: 0;
+    box-sizing: border-box;
+    font-family: "CeraPro";
 }
 
 .main-container {
-    width: $width;
+    max-width: $width;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 78px;
+    align-items:center;
+    border-bottom: 0.3px solid rgba(70, 163, 88, 0.5);
+    &_buttons {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    &_button {
+        font-weight: 500;
+        padding: 10px 19px;
+    }
+}
+
+.nav {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    & a {
+        text-decoration: none;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 20px;
+        color: $color_text_main;
+        margin-right: 50px;
+    }
+}
+
+.logo {
+    &_img {
+       color:$color_accent; 
+    }
+}
+
+.search {
+    display: flex;
+    &_input {
+        color: #A5A5A5;
+        border: unset;
+        text-align: end;
+        margin-right: 10px;
+        &:focus {
+            border:unset;
+        }
+    }
+}
+
+.button {
+    background-color:$color_accent;
+    border: 1px solid white;
+    border-radius: 6px;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFFFFF;
+    fill: white;
+    cursor: pointer;
+    & svg {
+        margin-left: 3px;
+        vertical-align: middle;
+    }
+    &:hover {
+        background-color:white;
+        color: $color_accent;
+        border: 1px solid $color_accent;
+        fill: $color_accent;
+    }
+}
+
+.slider {
+    display: flex;
+    flex-direction: column;
+    margin-top: 12px;
+    margin-bottom: 17px;
+    background: url('../img/background.png') no-repeat;
+    background-position: right;
+    background-size: 518px;
+    &_text {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        padding-top: 68px;
+        padding-left: 40px;
+        &-heading {
+            font-weight: 900;
+            font-size: 70px;
+            line-height: 70px;
+            text-transform: uppercase;
+            color: $color_text_main;
+            margin-bottom: 5px;
+            &-span {
+                color: $color_accent;
+            }
+        }
+        &-welcome {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 16px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: $color_text_main;
+            padding-left: 3px;
+            margin-bottom: 7px;
+        }
+        &-p {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 24px;
+            color: $color_text_addl;
+            margin-bottom: 44px;
+            padding-left: 3px;
+        }
+    }
+    &_button {
+        font-weight: 700;
+        padding: 10px 20px;
+        max-width: 140px;
+    }
+    &_pagination {
+        text-align: center;
+        margin-top: 60px;
+        &-circle {
+            width: 8px;
+            height: 8px;
+            display: inline-block;
+            background:  rgba(70, 163, 88, 0.3);;
+            border-radius: 50%;
+            &:hover {
+                background-color: $color_accent;
+            }
+        }
+        &-circle-active {
+            background-color: $color_accent;
+
+        }
+    } 
+}
+
+.catalog {
+    margin-top: 46px;
+    display: grid;
+    grid-template-columns: 310px auto;
+    grid-gap: 50px;
+    &_wrap {
+        display: flex;
+        flex-direction: column;
+    }
+    &_nav {
+        grid-column: 1/4;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 16px;
+        color: $color_text_main;
+        display: flex;
+        list-style: none;
+        cursor: pointer;
+        & li {
+            padding-right: 37px;
+            &:hover {
+                color: $color_accent;
+                font-weight: 700;
+            }
+        }
+        &-accent {
+            color: $color_accent;
+            font-weight: 700;
+        }
+    }
+    &_products {
+        margin-top: 31px;
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        grid-column-gap: 33px;
+        grid-row-gap: 70px;
+    }
+    &_product {   
+        border:1px solid white;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        &:hover {
+            border-top: 1px solid $color_accent;
+        }
+        &-active {
+            border-top: 1px solid $color_accent;
+        }
+        & figure {
+            text-align: center;
+            position: relative;
+        }
+        &-name {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 16px;
+            color: $color_text_main;
+            padding-top: 31px;
+            padding-bottom: 6px;
+        }
+        &-price {
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 16px;
+            color: $color_accent;
+        }
+        &-menu {
+            position: absolute;
+            left:50%;
+            transform:translate(-50%,-50%);
+            & svg {
+                fill: $color_text_main;
+            }
+            & svg:first-child {
+                margin-right: 26px;
+            }
+            & svg:hover {
+                cursor: pointer;
+                fill: $color_accent;
+            }
+        }
+    }
+}
+
+.filter {
+    &_heading {
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 16px;
+        color: $color_text_main;
+        padding-left: 18px;
+        padding-bottom: 7px;
+    }
+    &_list li{
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 16px;
+        color: $color_text_main;
+        padding-top: 13px;
+        padding-bottom: 13px;
+        list-style-type: none;
+        padding-left: 30px;
+    }
+    &_button {
+        font-weight: 700;
+        padding: 8px 26px;
+        max-width: 140px;
+        margin-left: 30px;
+        margin-bottom: 46px;
+    }
+}
+
+.sale {
+    background: linear-gradient(180deg, rgba(70, 163, 88, 0.1) 0%, rgba(70, 163, 88, 0.03) 100%);
+    margin-top: 19px;
+    background-size: 470px;
+    &_heading {
+        font-family: "HangedLetters";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 65px;
+        line-height: 65px;
+        color: $color_accent;
+        padding-top: 18px;
+        text-align: center;
+    }
+    &_text {
+        font-weight: 700;
+        font-size: 23px;
+        line-height: 16px;
+        text-align: center;
+        color: $color_text_main;
+        text-transform: uppercase;
+        padding-top: 11px;
+    }
+}
+
+.news {
+    margin-top: 219px;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 28px;
+    &_block {
+        display: flex;
+        padding-bottom: 10px;
+    }
+    &_text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+    }
+    &_heading {
+        font-weight: 900;
+        font-size: 18px;
+        line-height: 24px;
+        text-transform: uppercase;
+        color: $color_text_main;
+        max-width: 150px;
+        text-align: end;
+    }
+    &_p {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        color: $color_text_addl;
+        max-width: 292px;
+        text-align: end;
+        padding-top: 15px;
+        padding-bottom: 20px;
+    }
+    &_button {
+        font-weight: 500;
+        font-size: 14px;
+        padding: 8px 26px;
+        max-width: 150px;
+    }
+}
+
+.blog {
+    margin-top: 138px;
+    &-heading {
+        font-weight: 700;
+        font-size: 30px;
+        line-height: 16px;
+        text-align: center;
+        color: $color_text_main;
+    }
+    &-p {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        text-align: center;
+        color: $color_text_addl;
+        padding-top: 15px;
+        padding-bottom: 35px;
+    }
+    &_posts {
+        display: grid;
+        grid-template-columns: repeat(4, auto);
+        grid-gap: 44px;
+    }
+    &_post {
+        &-text {
+            padding-left: 15px;
+            padding-right: 11px;
+            padding-top: 9px;
+        }
+        &-time {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 16px;
+            color: $color_accent;
+        }
+        &-heading {
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 26px;
+            color: $color_text_main;
+        }
+        &-p {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 22px;
+            color: $color_text_addl;
+            padding-top: 4px;
+            padding-bottom: 9px;
+        }
+        &-link {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 16px;
+            color: $color_text_main;
+            text-decoration: none;
+            fill: $color_text_main;
+            &:hover {
+                color:$color_accent;
+                fill:$color_accent;
+            }
+            & svg {
+                margin-left: 6px;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+.contacts {
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    grid-gap: 10px;
+    background: rgba(70, 163, 88, 0.1);
+    padding-top: 27px;
+    padding-bottom: 27px;
+    padding-left: 23px;
+    &_block {
+        display: flex;
+        align-items: center;
+        &-p {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 22px;
+            color: $color_text_main;
+        }
+        & svg {
+            margin-right: 13px;
+        }
+        &-media {
+            border: 1px solid rgba(70, 163, 88, 0.2);
+            border-radius: 4px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+        }
+    }
 }

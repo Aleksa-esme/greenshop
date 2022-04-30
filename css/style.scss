@@ -12,12 +12,12 @@
     src: url("../fonts/HangedLetters.ttf") format("truetype");
 }
 
-$width: 1200px;
+$max-width: 1200px;
+$min-width: 375px;
 $color_accent: #46A358;
 $color_text_main: #3D3D3D;
 $color_text_addl: #727272;
 $color_text_light: #ACACAC;
-
 
 * {
     margin: 0;
@@ -28,10 +28,44 @@ $color_text_light: #ACACAC;
 }
 
 .main-container {
-    max-width: $width;
+    max-width: $max-width;
+    min-width: $min-width;
     margin: 0 auto;
     display: grid;
     grid-template-columns: auto;
+}
+.button {
+    background-color:$color_accent;
+    border: 1px solid white;
+    border-radius: 6px;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFFFFF;
+    fill: white;
+    cursor: pointer;
+    stroke: white;
+    & svg {
+        margin-left: 3px;
+        vertical-align: middle;
+    }
+    &:hover {
+        background-color:white;
+        color: $color_accent;
+        border: 1px solid $color_accent;
+        fill: $color_accent;
+        stroke: #46A358;
+    }
+}
+
+.svg_button {
+    border: unset;
+    background-color: unset;
+    cursor: pointer;
+    fill: $color_text_main;
+    &:hover {
+        fill: $color_accent;
+    }
 }
 
 .header {
@@ -48,12 +82,17 @@ $color_text_light: #ACACAC;
     &_button {
         font-weight: 500;
         padding: 10px 19px;
+        width: 110px;
+        & svg {
+            vertical-align: bottom;
+        }
     }
 }
 
 .nav {
     grid-column-start: 2;
     grid-column-end: 4;
+    margin-left: 90px;
     & a {
         text-decoration: none;
         font-style: normal;
@@ -62,12 +101,17 @@ $color_text_light: #ACACAC;
         line-height: 20px;
         color: $color_text_main;
         margin-right: 50px;
+        &:hover {
+            font-weight: 700;
+            padding-bottom: 28px;
+            border-bottom: 3px solid $color_accent;
+        }
     }
 }
 
 .logo {
-    &_img {
-       color:$color_accent; 
+    &_svg {
+       fill:$color_accent; 
     }
 }
 
@@ -78,31 +122,33 @@ $color_text_light: #ACACAC;
         border: unset;
         text-align: end;
         margin-right: 10px;
-        &:focus {
-            border:unset;
+        &:focus-visible {
+            outline: unset;
         }
     }
 }
-
-.button {
-    background-color:$color_accent;
-    border: 1px solid white;
-    border-radius: 6px;
-    font-style: normal;
-    font-size: 16px;
-    line-height: 20px;
-    color: #FFFFFF;
-    fill: white;
-    cursor: pointer;
-    & svg {
-        margin-left: 3px;
-        vertical-align: middle;
+.cart {
+    &_button {
+        margin-left: 30px;
+        margin-right: 35px;
+        position: relative;
     }
-    &:hover {
-        background-color:white;
-        color: $color_accent;
-        border: 1px solid $color_accent;
-        fill: $color_accent;
+    &_indicator {
+        position: absolute;
+        left: 15px;
+        top: -3px;
+        background:  $color_accent;
+        border-radius: 50%;
+        border: 2px solid white;
+        &-text {
+            font-weight: 500;
+            font-size: 10px;
+            line-height: 13px;
+            color: white;
+            text-align: center;
+            padding-left: 3px;
+            padding-right: 3px;
+        }
     }
 }
 
@@ -180,10 +226,6 @@ $color_text_light: #ACACAC;
     display: grid;
     grid-template-columns: 310px auto;
     grid-gap: 50px;
-    &_wrap {
-        display: flex;
-        flex-direction: column;
-    }
     &_nav {
         grid-column: 1/4;
         font-weight: 400;
@@ -191,18 +233,23 @@ $color_text_light: #ACACAC;
         line-height: 16px;
         color: $color_text_main;
         display: flex;
+        width: 257px;
+        justify-content: space-between;
         list-style: none;
         cursor: pointer;
         & li {
-            padding-right: 37px;
             &:hover {
                 color: $color_accent;
                 font-weight: 700;
+                padding-bottom: 15px;
+                border-bottom: 2px solid $color_accent;
             }
         }
         &-accent {
             color: $color_accent;
             font-weight: 700;
+            padding-bottom: 15px;
+            border-bottom: 2px solid $color_accent;
         }
     }
     &_products {
@@ -245,15 +292,9 @@ $color_text_light: #ACACAC;
             position: absolute;
             left:50%;
             transform:translate(-50%,-50%);
-            & svg {
-                fill: $color_text_main;
-            }
-            & svg:first-child {
+            display: flex;
+            &-button:first-child {
                 margin-right: 26px;
-            }
-            & svg:hover {
-                cursor: pointer;
-                fill: $color_accent;
             }
         }
     }
@@ -277,6 +318,17 @@ $color_text_light: #ACACAC;
         padding-bottom: 13px;
         list-style-type: none;
         padding-left: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        & span {
+            margin-right: 24px;
+        }
+        &:hover {
+            font-weight: 700;
+            color: $color_accent;
+        }
     }
     &_button {
         font-weight: 700;
@@ -450,6 +502,227 @@ $color_text_light: #ACACAC;
             height: 30px;
             display: flex;
             align-items: center;
+        }
+    }
+}
+
+@media (max-width: 425px) {
+    .header {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 78px;
+        align-items:center;
+        border-bottom: 0.3px solid rgba(70, 163, 88, 0.5);
+        &_buttons {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        &_button {
+            font-weight: 500;
+            padding: 10px 19px;
+            width: 110px;
+            & svg {
+                vertical-align: bottom;
+            }
+        }
+    }
+    
+    .nav {
+        display: none;
+    }
+    
+    .logo {
+        &_svg {
+           fill:$color_accent; 
+        }
+    }
+    
+    .search {
+        display: none;
+    }
+    .cart {
+        display: none;
+    }
+
+    .slider {
+        margin-top: 17px;
+        margin-bottom: 40px;
+        background: url('../img/background_mobile.png') no-repeat;
+        &_text {
+            width: 50%;
+            padding-top: 24px;
+            padding-left: 23px;
+            &-heading {
+                font-size: 24px;
+                line-height: 29px;
+                margin-bottom: 3px;
+            }
+            &-welcome {
+                font-size: 11px;
+                letter-spacing: unset;
+                padding-left: unset;
+                margin-bottom: unset;
+            }
+            &-p {
+                font-size: 12px;
+                line-height: 18px;
+                margin-bottom: 11px;
+                padding-left: unset;
+            }
+        }
+        &_button {
+            background: transparent;
+            border: unset;
+            border-radius: unset;
+            font-weight: 700;
+            padding: unset;
+            max-width: 70px;
+            font-size: 12px;
+            line-height: 14px;
+            color: $color_accent;
+            fill: $color_accent;
+                & svg {
+                    margin-left: 5px;
+                }
+        }
+        &_pagination {
+            margin-top: 12px;
+            &-circle {
+                width: 7px;
+                height: 7px;
+            }
+        } 
+    }
+
+    .catalog {
+        margin-top: 19px;
+        grid-template-columns: auto;
+        grid-gap: 19px;
+        &_nav {
+            font-size: 14px;
+            width: 257px;
+            justify-content: space-between;
+        }
+        &_products {
+            margin-top: 19px;
+            grid-template-columns: repeat(2, auto);
+            grid-column-gap: 19px;
+            grid-row-gap: 25px;
+        }
+        &_product {   
+            & img {
+                width: 168px;
+            }
+            &-name {
+                font-size: 15px;
+                color: $color_text_main;
+                padding-top: 9px;
+                padding-bottom: 4px;
+            }
+            &-price {
+                font-size: 16px;
+            }
+            &-menu {
+            }
+        }
+    }
+    
+    .filter {
+        display: none;
+    }
+    
+    .sale {
+        display: none;
+    }
+
+    .news {
+        margin-top: 50px;
+        grid-template-columns: auto;
+        grid-gap: 15px;
+        &_block {
+            display: flex;
+            padding-bottom: 10px;
+            & img {
+                width: 168px;
+            }
+        }
+        &_heading {
+            font-size: 14px;
+            line-height: 16px;
+            max-width: 140px;
+            text-align: end;
+        }
+        &_p {
+            font-size: 12px;
+            line-height: 18px;
+            max-width: 140px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        &_button {
+            font-weight: 500;
+            font-size: 12px;
+            padding: 6px 18px;
+            max-width: 120px;
+        }
+    }
+    
+    .blog {
+        margin-top: 50px;
+        &-heading {
+            font-size: 20px;
+            line-height: 14px;
+        }
+        &-p {
+            font-size: 12px;
+            line-height: 20px;
+            padding-top: 15px;
+            padding-bottom: 20px;
+        }
+        &_posts {
+            grid-template-columns: auto;
+            grid-gap: 25px;
+        }
+        &_post {
+            &-text {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            &-time {
+                font-size: 12px;
+                line-height: 14px;
+            }
+            &-heading {
+                font-size: 14px;
+                line-height: 20px;
+            }
+            &-p {
+                font-size: 12px;
+                line-height: 14px;
+                padding-top: 2px;
+                padding-bottom: 6px;
+            }
+            &-link {
+                font-size: 12px;
+                line-height: 14px;
+                & svg {
+                    margin-left: 3px;
+                }
+            }
+        }
+    }
+    
+    .contacts {
+        margin-top: 50px;
+        grid-template-columns: auto;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        &_block {
+            &-p {
+                font-size: 12px;
+                line-height: 18px;
+            }
         }
     }
 }

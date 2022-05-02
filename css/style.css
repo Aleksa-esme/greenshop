@@ -126,7 +126,7 @@
   fill: #46A358;
 }
 
-.search {
+.search_form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -622,6 +622,239 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.modal-container {
+  width: 578px;
+  background: #FFFFFF;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 0px auto;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal_close_btn {
+  -ms-flex-item-align: end;
+      -ms-grid-row-align: end;
+      align-self: end;
+  margin-top: 20px;
+  margin-right: 17px;
+  fill: rgba(70, 163, 88, 0.6);
+  border: unset;
+  background-color: unset;
+  cursor: pointer;
+  width: 12px;
+  height: 12px;
+}
+
+.modal_close_btn:hover {
+  fill: #46A358;
+}
+
+.modal_empty {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  color: #3D3D3D;
+  text-align: center;
+}
+
+.modal_footer {
+  margin-top: 50px;
+  height: 10px;
+  background-color: #46A358;
+}
+
+.modal_caption {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 16px;
+  color: #3D3D3D;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.modal_table {
+  width: 495px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  border-collapse: collapse;
+}
+
+.modal_table-header {
+  border-bottom: 0.3px solid rgba(70, 163, 88, 0.5);
+}
+
+.modal_table-header-th {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  color: #3D3D3D;
+  padding-bottom: 11px;
+  padding-top: 10px;
+}
+
+.modal_table-header-th:first-child {
+  text-align: left;
+}
+
+.modal_table-header-th:last-child {
+  text-align: right;
+  padding-right: 13px;
+}
+
+.modal_table-total {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+  color: #3D3D3D;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.modal_table-total-price {
+  font-size: 18px;
+  text-align: right;
+  color: #46A358;
+  padding-right: 13px;
+}
+
+.modal_table-row td {
+  margin-top: 15px;
+}
+
+.modal_table-product {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal_table-img {
+  width: 65px;
+}
+
+.modal_table-name {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  color: #3D3D3D;
+  padding-left: 11px;
+}
+
+.modal_table-qty {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #727272;
+}
+
+.modal_table-qty-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal_table-qty-btn {
+  background: -webkit-gradient(linear, left top, left bottom, from(#46A358), to(rgba(70, 163, 88, 0.8)));
+  background: linear-gradient(180deg, #46A358 0%, rgba(70, 163, 88, 0.8) 100%);
+  border: 1px solid white;
+  border-radius: 29px;
+  cursor: pointer;
+  color: white;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 16px;
+  margin-left: 11px;
+  margin-right: 11px;
+}
+
+.modal_table-qty-btn:first-child {
+  padding: 5px 6px;
+}
+
+.modal_table-qty-btn:last-child {
+  padding: 5px 4px;
+}
+
+.modal_table-qty-btn:hover {
+  border: 1px solid #46A358;
+}
+
+.modal_table-price {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 16px;
+  text-align: right;
+  color: #46A358;
+  padding-right: 13px;
+  padding-top: 27px;
+  padding-bottom: 27px;
+}
+
+.modal_table-delete-btn {
+  background-color: unset;
+  border: unset;
+  stroke: #727272;
+  cursor: pointer;
+}
+
+.modal_table-delete-btn:hover {
+  stroke: #46A358;
+}
+
+.modal_table-delete-btn svg {
+  width: 15px;
+}
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 @media (max-width: 425px) {

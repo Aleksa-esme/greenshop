@@ -1,7 +1,7 @@
 const product = {
     props: ['product'],
     template: `
-            <div class="catalog_product catalog_product-active">
+            <div class="catalog_product">
                 
                 <figure>
                     <img :src="product.img" alt="product.product_name">

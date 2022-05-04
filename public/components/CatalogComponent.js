@@ -40,11 +40,12 @@ const catalog = {
     },
     mounted () {
         // this.$parent.getJson(`${API + this.catalogUrl}`)
-        this.$parent.getJson(`../DB/getProducts.json`)
+        // this.$parent.getJson(`../server_express/DB/getProducts.json`)
+        this.$parent.getJson(`/api/products`)
            .then(data => {
                for(let el of data){
-                   this.products.push(el);
-                   this.filtered.push(el);
+                   this.$data.products.push(el);
+                   this.$data.filtered.push(el);
                }
            });
     },

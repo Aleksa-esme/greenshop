@@ -56,7 +56,7 @@ const cart = {
         addProduct(product) {      
             product.quantity ? product.quantity : Vue.set(product, 'quantity', 1);
             let find = this.cartItems.find(el => el.id_product === product.id_product);
-            if(find){
+            if(find) {
                 this.$parent.putJson(`api/cart/${find.id_product}`, {quantity: 1})
                     .then(data => {
                         if (data.result) {
@@ -74,27 +74,29 @@ const cart = {
         },
 
         decreaseProduct(product) {
-            this.$parent.getJson(`../server_express/DB/deleteFromBasket.json`)
-            .then(data => {
-                if (data.result) {
-                    if (product.quantity == 1) {
+            if (product.quantity == 1) {
+                console.log(product);
                         this.removeProduct(product);
-                    } else {
-                        product.quantity--; 
-                    }
-                }
-            });
+            } else {
+                this.$parent.putJson(`api/cart/${product.id_product}`, {quantity: 1})
+                    .then(data => {
+                        if (data.result) {
+                            product.quantity --; 
+                        }
+                    })        
+            }   
         },
 
         removeProduct(product) {
-            this.$parent.getJson(`../server_express/DB/deleteFromBasket.json`)
-            .then(data => {
-                if (data.result) {
-                    this.cartItems = this.cartItems.filter(item => {
-                        return item !== product;
-                    })
-                }
-            });
+            let find = this.cartItems.find(el => el.id_product === product.id_product);
+            this.$parent.deleteJson(`api/cart/${find.id_product}`, product)
+                .then(data => {
+                    if (data.result) {
+                        this.cartItems = this.cartItems.filter(item => {
+                            return item !== product;
+                        })
+                    }
+                });
         },
 
         getTotalPrice() {

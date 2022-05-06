@@ -1,48 +1,5 @@
 {
     "amount": 46600,
     "countGoods": 2,
-    "contents": [
-        {
-            "id_product": 101,
-            "product_name": "Barberton Daisy",
-            "price": 119,
-            "img": "../img/catalog/101.jpg",
-            "quantity": 16
-        },
-        {
-            "id_product": 102,
-            "product_name": "Angel Wing Begonia",
-            "price": 169,
-            "img": "../img/catalog/102.jpg",
-            "quantity": 12
-        },
-        {
-            "quantity": 10,
-            "id_product": 103,
-            "product_name": "African Violet",
-            "price": 229,
-            "img": "../img/catalog/103.jpg"
-        },
-        {
-            "id_product": 104,
-            "product_name": "Beach Spider Lily",
-            "price": 129,
-            "img": "../img/catalog/104.jpg",
-            "quantity": 6
-        },
-        {
-            "id_product": 109,
-            "product_name": "Chinese Evergreen",
-            "price": 39,
-            "img": "../img/catalog/109.jpg",
-            "quantity": 3
-        },
-        {
-            "id_product": 105,
-            "product_name": "Blushing Bromeliad",
-            "price": 139,
-            "img": "../img/catalog/105.jpg",
-            "quantity": 2
-        }
-    ]
+    "contents": []
 }

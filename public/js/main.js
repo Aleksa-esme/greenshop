@@ -12,7 +12,6 @@ const app = new Vue({
                 const result = await fetch(url);
                 return await result.json();
             } catch (error) {
-                
                 this.error = !this.error;
                 // this.$refs.error.text = error;
             }
@@ -29,7 +28,6 @@ const app = new Vue({
                 });
                 return await result.json();
             } catch (error) {
-                
                 this.error = !this.error;
                 // this.$refs.error.text = error;
             }
@@ -45,7 +43,22 @@ const app = new Vue({
                 });
                 return await result.json();
             } catch (error) {
-                
+                this.error = !this.error;
+                // this.$refs.error.text = error;
+            }
+        },
+
+        async deleteJson(url, data){
+            try {
+                const result = await fetch(url, {
+                    method: 'DELETE',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
+                return await result.json();
+            } catch (error) {
                 this.error = !this.error;
                 // this.$refs.error.text = error;
             }

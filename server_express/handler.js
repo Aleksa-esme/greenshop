@@ -3,7 +3,9 @@ const fs = require('fs');
 
 const actions = {
     add: cart.add,
-    change: cart.change
+    change: cart.change,
+    // reduce: cart.reduce,
+    delete: cart.dlt,
 };
 //HANDLER отвечает за изменение данных в самом файле
 let handler = (req, res, action, file) => {

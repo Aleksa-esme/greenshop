@@ -18,9 +18,6 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
     handler(req, res, 'change', 'server_express/db/userCart.json');
 });
-// router.put('/:id', (req, res) => {
-//     handler(req, res, 'reduce', 'server_express/db/userCart.json');
-// });
 router.delete('/:id', (req, res) => {
     handler(req, res, 'delete', 'server_express/db/userCart.json');
 });

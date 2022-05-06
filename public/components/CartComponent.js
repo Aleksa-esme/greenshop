@@ -75,10 +75,9 @@ const cart = {
 
         decreaseProduct(product) {
             if (product.quantity == 1) {
-                console.log(product);
-                        this.removeProduct(product);
+                this.removeProduct(product);
             } else {
-                this.$parent.putJson(`api/cart/${product.id_product}`, {quantity: 1})
+                this.$parent.deleteJson(`api/cart/${product.id_product}`, {quantity: 1})
                     .then(data => {
                         if (data.result) {
                             product.quantity --; 

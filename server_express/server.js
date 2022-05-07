@@ -27,5 +27,15 @@ app.get('/api/posts', (req, res) => {
     })
 });
 
+app.get('/api/news', (req, res) => {
+    fs.readFile('server_express/db/getNews.json', 'utf-8', (err, data) => {
+        if(err){
+            res.sendStatus(404, JSON.stringify({result:0, text: err}));
+        } else {
+            res.send(data);
+        }
+    })
+});
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listen on port ${port}...`));

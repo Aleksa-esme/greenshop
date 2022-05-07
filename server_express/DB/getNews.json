@@ -1,0 +1,14 @@
+[
+  {
+    "id_news": 1,
+    "title": "SUMMER CACTUS & SUCCULENTS",
+    "description": "We are an online plant shop offering a wide range of cheap and trendy plants",
+    "img" : "img/catalog/105.jpg"
+  },
+  {
+    "id_news": 2,
+    "title": "STYLING TRENDS & MUCH MORE",
+    "description": "We are an online plant shop offering a wide range of cheap and trendy plants",
+    "img" : "img/catalog/103.jpg"
+  }
+]

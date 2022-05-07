@@ -54,7 +54,7 @@ $color_text_light: #ACACAC;
         color: $color_accent;
         border: 1px solid $color_accent;
         fill: $color_accent;
-        stroke: #46A358;
+        stroke: $color_accent;
     }
 }
 
@@ -124,6 +124,9 @@ $color_text_light: #ACACAC;
         border: unset;
         text-align: end;
         margin-right: 10px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
         &:focus-visible {
             outline: unset;
         }
@@ -385,12 +388,22 @@ $color_text_light: #ACACAC;
             color: $color_text_addl;
             margin-bottom: 44px;
             padding-left: 3px;
+            // white-space: nowrap; 
+            // overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
     &_button {
         font-weight: 700;
         padding: 10px 20px;
         max-width: 140px;
+        &-arrow {
+            display: none;
+        }
     }
     &_pagination {
         text-align: center;
@@ -455,12 +468,13 @@ $color_text_light: #ACACAC;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
+        position: relative;
         &:hover {
             border-top: 1px solid $color_accent;
         }
         & figure {
             text-align: center;
-            position: relative;
+            
         }
         &-name {
             font-weight: 400;
@@ -662,6 +676,10 @@ $color_text_light: #ACACAC;
     }
 }
 
+.card-carousel {
+    display: none;
+}
+
 .contacts {
     margin-top: 100px;
     display: grid;
@@ -681,20 +699,16 @@ $color_text_light: #ACACAC;
             color: $color_text_main;
         }
         & svg {
-            margin-right: 13px;
-        }
-        &-media {
-            border: 1px solid rgba(70, 163, 88, 0.2);
-            border-radius: 4px;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
+            margin-right: 10px;
         }
     }
 }
 
 @media (max-width: 425px) {
+    .main-container {
+        margin-left: 24px;
+        margin-right: 24px;
+    }
     .header {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -721,13 +735,23 @@ $color_text_light: #ACACAC;
     }
     
     .logo {
-        &_svg {
-           fill:$color_accent; 
-        }
+        display: none;
     }
     
     .search {
-        display: none;
+        &_form {
+            flex-direction: row-reverse;
+        }
+        &_input {
+            color: #A5A5A5;
+            border: unset;
+            text-align: unset;
+            margin-right: unset;
+            margin-left: 10px;
+        }
+        &_button {
+            fill: #A5A5A5;
+        }
     }
     .cart {
         display: none;
@@ -735,10 +759,9 @@ $color_text_light: #ACACAC;
 
     .slider {
         margin-top: 17px;
-        margin-bottom: 40px;
         background: url('../img/background_mobile.png') no-repeat;
         &_text {
-            width: 50%;
+            width: 60%;
             padding-top: 24px;
             padding-left: 23px;
             &-heading {
@@ -750,13 +773,16 @@ $color_text_light: #ACACAC;
                 font-size: 11px;
                 letter-spacing: unset;
                 padding-left: unset;
-                margin-bottom: unset;
+                margin-bottom: -2px;
             }
             &-p {
                 font-size: 12px;
                 line-height: 18px;
                 margin-bottom: 11px;
                 padding-left: unset;
+                & span {
+                    display: none;
+                }
             }
         }
         &_button {
@@ -765,17 +791,29 @@ $color_text_light: #ACACAC;
             border-radius: unset;
             font-weight: 700;
             padding: unset;
-            max-width: 70px;
+            max-width: 90px;
             font-size: 12px;
             line-height: 14px;
             color: $color_accent;
-            fill: $color_accent;
-                & svg {
-                    margin-left: 5px;
-                }
+            display: flex;
+            align-items: center;
+            stroke: $color_accent;
+            &-arrow {
+                display: block;
+                margin-left: 5px;
+            }
+
+            &:hover {
+                background: transparent;
+                border: unset;
+                border-radius: unset;
+                color:$color_text_main;
+                stroke: $color_text_main;
+            }
         }
         &_pagination {
             margin-top: 12px;
+            margin-bottom: 8px;
             &-circle {
                 width: 7px;
                 height: 7px;
@@ -810,8 +848,21 @@ $color_text_light: #ACACAC;
             }
             &-price {
                 font-size: 16px;
+            }  
+            &-menu {
+                display: flex;
+                flex-direction: column;
+                top: 20%;
+                left:90%;
+                &-button svg {
+                    width: 17px;
+                    fill: $color_accent;
+                }
+                &-button:first-child {
+                    margin-right: unset;
+                    margin-bottom: 10px;
+                }
             }
-            
         }
     }
     
@@ -830,6 +881,7 @@ $color_text_light: #ACACAC;
         &_block {
             display: flex;
             padding-bottom: 10px;
+            justify-content: center;
             & img {
                 width: 168px;
             }
@@ -868,13 +920,20 @@ $color_text_light: #ACACAC;
             padding-bottom: 20px;
         }
         &_posts {
-            grid-template-columns: auto;
-            grid-gap: 25px;
+            display: none;
         }
         &_post {
+            position: relative;
             &-text {
+                width: 250px;
                 padding-left: 10px;
                 padding-right: 10px;
+                padding-bottom: 9px;
+                background: rgba(255, 255, 255, 0.8);
+                position: absolute;
+                top: 70%;
+                left:50%;
+                transform:translate(-50%,-50%);
             }
             &-time {
                 font-size: 12px;
@@ -889,6 +948,7 @@ $color_text_light: #ACACAC;
                 line-height: 14px;
                 padding-top: 2px;
                 padding-bottom: 6px;
+
             }
             &-link {
                 font-size: 12px;
@@ -899,6 +959,73 @@ $color_text_light: #ACACAC;
             }
         }
     }
+
+    .card-carousel {
+        display: none;
+        display: flex;
+        justify-content: center;
+        width: 268px;
+    
+        &-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0 40px;
+        }
+        &--overflow-container {
+            overflow: hidden;
+        }
+        
+        &--nav__left,
+        &--nav__right {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            // padding: 10px;
+            box-sizing: border-box;
+            border-top: 2px solid $color_accent;
+            border-right: 2px solid $color_accent;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: transform 150ms linear;
+            &[disabled] {
+                border-color: $color_text_light;
+            }
+        }
+        
+        &--nav__left {
+            transform: rotate(-135deg);
+            &:active {
+                transform: rotate(-135deg) scale(0.9);
+            }
+        }
+        
+        &--nav__right {
+            transform: rotate(45deg);
+            &:active {
+                transform: rotate(45deg) scale(0.9);
+            }
+        }
+        &-cards {
+            display: flex;
+            transition: transform 150ms ease-out;
+            transform: translatex(0px);
+        }
+        &--card {
+            margin: 0 10px;
+            z-index: 3;
+            margin-bottom: 2px;
+            
+            &:first-child {
+                margin-left: 0;
+            }
+            
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+    
     
     .contacts {
         margin-top: 50px;

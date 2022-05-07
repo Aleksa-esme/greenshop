@@ -18,7 +18,7 @@ app.get('/api/products', (req, res) => {
 });
 
 app.get('/api/posts', (req, res) => {
-    fs.readFile('server_express/db/getPosts.json', 'utf-8', (err, data) => {
+    fs.readFile('server_express/db/posts.json', 'utf-8', (err, data) => {
         if(err){
             res.sendStatus(404, JSON.stringify({result:0, text: err}));
         } else {
@@ -28,7 +28,7 @@ app.get('/api/posts', (req, res) => {
 });
 
 app.get('/api/news', (req, res) => {
-    fs.readFile('server_express/db/getNews.json', 'utf-8', (err, data) => {
+    fs.readFile('server_express/db/news.json', 'utf-8', (err, data) => {
         if(err){
             res.sendStatus(404, JSON.stringify({result:0, text: err}));
         } else {

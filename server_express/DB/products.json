@@ -44,15 +44,15 @@
     "product_name": "Aluminum Plant",
     "price": 179,
     "img": "../img/catalog/106.jpg",
-    "size": "medium",
-    "category": ["House plants", "Big plants", "Succulents"] 
+    "size": "small",
+    "category": ["House plants", "Small plants", "Succulents"] 
   },
   {
     "id_product": 107,
     "product_name": "Bird's Nest Fern",
     "price": 99,
     "img": "../img/catalog/107.jpg",
-    "size": "madium",
+    "size": "medium",
     "category": ["House plants", "Big plants", "Succulents"] 
   },
   {

@@ -5,7 +5,7 @@ const app = new Vue({
     },
     mounted(){},
     // components: { myheader, blog, cart, catalog, filter, footer, news, search },
-    components: { search, catalog, cart, news, blog },
+    components: { search, catalog, filtercustom, cart, news, blog },
     methods: {
         async getJson(url) {
             try {

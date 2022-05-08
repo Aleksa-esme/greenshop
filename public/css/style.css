@@ -596,6 +596,7 @@
   display: block;
   position: absolute;
   left: 50%;
+  top: 82%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
@@ -632,6 +633,7 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   cursor: pointer;
+  text-transform: capitalize;
 }
 
 .filter_list li span {

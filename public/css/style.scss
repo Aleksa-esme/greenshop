@@ -494,6 +494,7 @@ $color_text_light: #ACACAC;
             display: block;
             position: absolute;
             left:50%;
+            top: 82%;
             transform:translate(-50%,-50%);
             &-button:first-child {
                 margin-right: 26px;
@@ -524,6 +525,7 @@ $color_text_light: #ACACAC;
         align-items: center;
         justify-content: space-between;
         cursor: pointer;
+        text-transform: capitalize;
         & span {
             margin-right: 24px;
         }

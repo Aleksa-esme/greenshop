@@ -17,8 +17,8 @@
   },
   "homepage": "https://github.com/Aleksa-esme/greenshop#readme",
   "dependencies": {
-    "moment": "^2.29.3"
+    "moment": "^2.29.3",
+    "vue-moment": "^4.1.0"
   },
-  "devDependencies": {},
   "description": ""
 }

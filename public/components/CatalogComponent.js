@@ -30,24 +30,58 @@ const product = {
     `
 };
 
-const catalog = {
+Vue.component("All plants", {
+    props: ['filtered'],
     components: { product },
+    template: `
+                <section class="catalog_products">
+                    <product 
+                        v-for="product of filtered" 
+                        :key="product.id_product"
+                        :product="product"
+                    >
+                    </product>
+                </section>
+    `
+});
+// сделать фильтрацию массива products по дате(исп.moment)
+Vue.component("New arrivals", {
+    props: ['products'],
+    components: { product },
+    template: `
+            <div>New arrivals component</div>
+    `
+
+});
+// сделать фильтрацию массива products по наличию скидки
+Vue.component("Sale", {
+    props: ['products'],
+    components: { product },
+    template: "<div>Sale component</div>"
+});
+
+const catalog = {
     data () {
         return {
             products: [],
             filtered: [],
+            currentTab: "All plants",
+            tabs: ["All plants", "New arrivals", "Sale"]
+        }
+    },
+    computed: {
+        currentTabComponent: function() {
+            return this.currentTab;
         }
     },
     mounted () {
-        // this.$parent.getJson(`${API + this.catalogUrl}`)
-        // this.$parent.getJson(`../server_express/DB/getProducts.json`)
         this.$parent.getJson(`/api/products`)
-           .then(data => {
-               for(let el of data){
-                   this.$data.products.push(el);
-                   this.$data.filtered.push(el);
-               }
-           });
+            .then(data => {
+                for(let el of data){
+                    this.$data.products.push(el);
+                    this.$data.filtered.push(el);
+                }
+            });
     },
     methods: {
         filter(value) {
@@ -60,20 +94,24 @@ const catalog = {
                     
                     <div class="catalog_nav">
                         <ul class="catalog_nav">
-                            <li class="catalog_nav-accent">All plants</li>
-                            <li>New arrivals</li>
-                            <li>Sale</li>
+                            <li 
+                                v-for="tab in tabs"
+                                v-bind:key="tab"
+                                v-bind:class="['catalog_nav-tab', { active: currentTab === tab }]"
+                                v-on:click="currentTab = tab"
+                            >
+                                {{ tab }}
+                            </li>
                         </ul>
                     </div>
                     
-                    <section class="catalog_products">
-                        <product 
-                        v-for="product of filtered" 
-                        :key="product.id_product"
-                        :product="product"
-                        >
-                        </product>
-                    </section>
+                    <component 
+                        v-bind:is="currentTabComponent" 
+                        class="tab"
+                        :filtered="filtered"
+                        :products="products"
+                    >
+                    </component>
                 
                 </div>
     `

@@ -514,10 +514,6 @@
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
   grid-column: 1/4;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 16px;
-  color: #3D3D3D;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -526,17 +522,26 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   list-style: none;
-  cursor: pointer;
 }
 
-.catalog_nav li:hover {
+.catalog_nav-tab {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 16px;
+  color: #3D3D3D;
+  cursor: pointer;
+  padding-bottom: 15px;
+  border-bottom: 2px solid white;
+}
+
+.catalog_nav-tab:hover {
   color: #46A358;
   font-weight: 700;
   padding-bottom: 15px;
   border-bottom: 2px solid #46A358;
 }
 
-.catalog_nav-accent {
+.catalog_nav-tab.active {
   color: #46A358;
   font-weight: 700;
   padding-bottom: 15px;

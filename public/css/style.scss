@@ -34,6 +34,7 @@ $color_text_light: #ACACAC;
     display: grid;
     grid-template-columns: auto;
 }
+
 .button {
     background-color:$color_accent;
     border: 1px solid white;
@@ -432,28 +433,30 @@ $color_text_light: #ACACAC;
     grid-gap: 50px;
     &_nav {
         grid-column: 1/4;
-        font-weight: 400;
-        font-size: 15px;
-        line-height: 16px;
-        color: $color_text_main;
         display: flex;
         width: 257px;
         justify-content: space-between;
         list-style: none;
-        cursor: pointer;
-        & li {
+        &-tab {
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 16px;
+            color: $color_text_main;
+            cursor: pointer;
+            padding-bottom: 15px;
+            border-bottom: 2px solid white;
             &:hover {
                 color: $color_accent;
                 font-weight: 700;
                 padding-bottom: 15px;
                 border-bottom: 2px solid $color_accent;
             }
-        }
-        &-accent {
-            color: $color_accent;
-            font-weight: 700;
-            padding-bottom: 15px;
-            border-bottom: 2px solid $color_accent;
+            &.active {
+                color: $color_accent;
+                font-weight: 700;
+                padding-bottom: 15px;
+                border-bottom: 2px solid $color_accent;
+            }
         }
     }
     &_products {

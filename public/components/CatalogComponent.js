@@ -1,3 +1,4 @@
+// const moment = require('moment');
 const product = {
     props: ['product'],
     template: `
@@ -31,32 +32,60 @@ const product = {
 };
 
 Vue.component("All plants", {
-    props: ['filtered'],
+    props: ['filtered', 'selectedSizes'],
     components: { product },
+    computed: {
+        filteredSizes() {
+            
+            if (!this.selectedSizes.length) 
+                return this.filtered;
+            
+            return this.filtered.filter(product => {
+                return this.selectedSizes.includes(product.size);
+            });
+        }
+    },
     template: `
                 <section class="catalog_products">
                     <product 
-                        v-for="product of filtered" 
+                        v-for="product of filteredSizes" 
                         :key="product.id_product"
                         :product="product"
                     >
                     </product>
                 </section>
     `
-});
-// сделать фильтрацию массива products по дате(исп.moment)
-Vue.component("New arrivals", {
-    props: ['products'],
-    components: { product },
-    template: `
-            <div>New arrivals component</div>
-    `
+    //     v-for="product of filtered" 
 
 });
-// сделать фильтрацию массива products по наличию скидки
-Vue.component("Sale", {
+// сделать фильтрацию по дате
+Vue.component("New arrivals", {
     props: ['products'],
+    data () {
+        return {
+            filteredByDate: [],
+        }
+    },
     components: { product },
+    mounted () {
+        // this.filteredByDate = this.products.sort((a,b) => moment(b.date_arrival, 'DD.MM.YY') - moment(a.date_arrival, 'DD.MM.YY'));
+    },
+    methods: {
+    },
+    // template: `
+    //             <section class="catalog_products">
+    //             <p>{{ currentDate }}</p>
+    //                 <product 
+    //                     v-for="product of filteredByDate" 
+    //                     :key="product.id_product"
+    //                     :product="product"
+    //                 >
+    //                 </product>
+    //             </section>
+    // `
+});
+// сделать фильтрацию по наличию скидки
+Vue.component("Sale", {
     template: "<div>Sale component</div>"
 });
 
@@ -110,6 +139,7 @@ const catalog = {
                         class="tab"
                         :filtered="filtered"
                         :products="products"
+                        :selectedSizes="$parent.$refs.filterCustom.selectedSizes"
                     >
                     </component>
                 

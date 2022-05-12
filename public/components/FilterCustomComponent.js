@@ -4,6 +4,7 @@ const filtercustom = {
             products: [],
             categories: [],
             sizes: [],
+            selectedSizes: []
         }
     },
     mounted () {
@@ -27,11 +28,6 @@ const filtercustom = {
             })
     },
     methods: {
-        filter(value) {
-            // let regexp = new RegExp(value, 'i');
-            // this.filtered = this.products.filter(product => regexp.test(product.product_name));
-        },
-        
         getSizeQty(size) {
             let qty = 0;
             this.products.filter(el => {
@@ -41,7 +37,6 @@ const filtercustom = {
             })
             return qty;
         },
-        
         getCategoryQty(category) {
             let qty = 0;
             this.products.filter(item => {
@@ -50,15 +45,15 @@ const filtercustom = {
                 }
             })
             return qty;
-        } 
-        //перенести эти методы в catalog, и запрашивать методы от туда
+        },
     },
     template: `
             <div class="filter">
                 <h6 class="filter_heading">Categories</h6>
                 
                 <ul class="filter_list" v-for="category of categories">
-                    <li>{{ category }}<span>( {{ getCategoryQty(category) }} )</span></li>
+                    <li>{{ category }}
+                    <p class="filter_qty">( {{ getCategoryQty(category) }} )</p></li>
                 </ul>
 
                 <!-- <h6 class="filter_heading">Price range</h6>
@@ -68,7 +63,11 @@ const filtercustom = {
                 <h6 class="filter_heading">Size</h6>
                 
                 <ul class="filter_list" v-for="size of sizes">
-                    <li>{{ size }}<span>( {{ getSizeQty(size) }} )</span></li>
+                    <li>
+                        <input type="checkbox" :id="size" :value="size" v-model="selectedSizes">
+                        <label :for="size">{{ size }}</label>
+                        <p class="filter_qty">( {{ getSizeQty(size) }} )</p>
+                    </li>
                 </ul>
 
             </div>

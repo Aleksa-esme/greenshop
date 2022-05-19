@@ -173,3 +173,14 @@ const cart = {
   `
 
 };
+
+export default {
+    cart: cart,
+    cartItem: cartItem
+};
+
+module.exports = {
+    addProduct,
+    decreaseProduct,
+    removeProduct
+};

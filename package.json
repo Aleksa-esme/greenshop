@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,11 @@
   },
   "homepage": "https://github.com/Aleksa-esme/greenshop#readme",
   "dependencies": {
-    "moment": "^2.29.3"
+    "jasmine": "^4.1.0",
+    "jasmine-core": "^4.1.1",
+    "moment": "^2.29.3",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2"
   },
   "description": ""
 }

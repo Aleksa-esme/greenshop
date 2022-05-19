@@ -146,3 +146,8 @@ const catalog = {
                 </div>
     `
 };
+
+export default {
+    catalog: catalog,
+    product: product
+}

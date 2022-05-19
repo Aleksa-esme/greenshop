@@ -43,3 +43,8 @@ const news = {
     `
 
 };
+
+export default {
+    news: news,
+    newsBlock: newsBlock
+}

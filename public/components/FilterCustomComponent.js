@@ -72,4 +72,8 @@ const filtercustom = {
 
             </div>
     `
+};
+
+export default {
+    filtercustom: filtercustom
 }

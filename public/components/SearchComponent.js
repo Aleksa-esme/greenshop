@@ -17,3 +17,7 @@ const search = {
             </div>  
     `
 };
+
+export default {
+    search: search
+}

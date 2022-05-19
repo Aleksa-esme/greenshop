@@ -105,3 +105,8 @@ const blog = {
             </section>
     `
 };
+
+export default {
+    blog: blog,
+    post: post
+}

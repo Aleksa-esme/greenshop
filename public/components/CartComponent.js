@@ -40,48 +40,62 @@ const cart = {
             cartItems: []
         }
     },
+    mounted () {
+        this.$parent.getJson(`api/cart`)
+        .then(data => {
+            for(let el of data.contents){
+                this.$data.cartItems.push(el);
+            }
+        });
+    },
     methods: {
         showCart() {
             this.isVisibleCart = !this.isVisibleCart;
         },
 
         addProduct(product) {      
-            this.$parent.getJson(`../DB/addToBasket.json`)
-            .then(data => {
-                if (data.result) {
-                    product.quantity ? product.quantity : Vue.set(product, 'quantity', 1);
-                    let find = this.cartItems.find(el => el.id_product === product.id_product);
-                    if(find){
-                        find.quantity ++;
-                    } else {
-                        this.cartItems.push(product);
-                    }
-                }
-            });
+            product.quantity ? product.quantity : Vue.set(product, 'quantity', 1);
+            let find = this.cartItems.find(el => el.id_product === product.id_product);
+            if(find) {
+                this.$parent.putJson(`api/cart/${find.id_product}`, {quantity: 1})
+                    .then(data => {
+                        if (data.result) {
+                            find.quantity ++;
+                        }
+                    })
+            } else {
+                this.$parent.postJson(`api/cart`, product)
+                    .then(data => {
+                        if (data.result) {
+                            this.cartItems.push(product);
+                        }
+                    })    
+            }
         },
 
         decreaseProduct(product) {
-            this.$parent.getJson(`../DB/deleteFromBasket.json`)
-            .then(data => {
-                if (data.result) {
-                    if (product.quantity == 1) {
-                        this.removeProduct(product);
-                    } else {
-                        product.quantity--; 
-                    }
-                }
-            });
+            if (product.quantity == 1) {
+                this.removeProduct(product);
+            } else {
+                this.$parent.deleteJson(`api/cart/${product.id_product}`, {quantity: 1})
+                    .then(data => {
+                        if (data.result) {
+                            product.quantity --; 
+                        }
+                    })        
+            }   
         },
 
         removeProduct(product) {
-            this.$parent.getJson(`../DB/deleteFromBasket.json`)
-            .then(data => {
-                if (data.result) {
-                    this.cartItems = this.cartItems.filter(item => {
-                        return item !== product;
-                    })
-                }
-            });
+            let find = this.cartItems.find(el => el.id_product === product.id_product);
+            this.$parent.deleteJson(`api/cart/${find.id_product}`, product)
+                .then(data => {
+                    if (data.result) {
+                        this.cartItems = this.cartItems.filter(item => {
+                            return item !== product;
+                        })
+                    }
+                });
         },
 
         getTotalPrice() {
@@ -91,14 +105,6 @@ const cart = {
         getTotalQty() {
             return this.cartItems.reduce((accum, item) => accum += item.quantity, 0);
         },
-    },
-    mounted () {
-        this.$parent.getJson(`../DB/getBasket.json`)
-        .then(data => {
-            for(let el of data.contents){
-                this.cartItems.push(el);
-            }
-        });
     },
     template: `
         <div class="cart">
@@ -166,4 +172,15 @@ const cart = {
     
   `
 
+};
+
+export default {
+    cart: cart,
+    cartItem: cartItem
+};
+
+module.exports = {
+    addProduct,
+    decreaseProduct,
+    removeProduct
 };

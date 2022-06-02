@@ -1,0 +1,13 @@
+{
+    "amount": 46600,
+    "countGoods": 2,
+    "contents": [
+        {
+            "id_product": 102,
+            "product_name": "Angel Wing Begonia",
+            "price": 169,
+            "img": "../img/catalog/102.jpg",
+            "quantity": 2
+        }
+    ]
+}

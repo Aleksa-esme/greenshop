@@ -1,0 +1,83 @@
+[
+  {
+    "id_product": 101,
+    "product_name": "Barberton Daisy",
+    "price": 119,
+    "img": "../img/catalog/101.jpg",
+    "size": "small",
+    "category": ["House plants", "Small plants", "Succulents", "Trerrariums"],
+    "date_arrival": "09.05.2019" 
+  },
+  {
+    "id_product": 102,
+    "product_name": "Angel Wing Begonia",
+    "price": 169,
+    "img": "../img/catalog/102.jpg",
+    "size": "medium",
+    "category": ["House plants","Potter plants", "Big plants"],
+    "date_arrival": "09.05.2019" 
+  },
+  {
+    "id_product": 103,
+    "product_name": "African Violet",
+    "price": 229,
+    "img": "../img/catalog/103.jpg",
+    "size": "large",
+    "category": ["House plants", "Big plants"],
+    "date_arrival": "08.04.2022" 
+  },
+  {
+    "id_product": 104,
+    "product_name": "Beach Spider Lily",
+    "price": 129,
+    "img": "../img/catalog/104.jpg",
+    "size": "large",
+    "category": ["House plants","Potter plants", "Big plants"],
+    "date_arrival": "07.05.2022"
+  },
+  {
+    "id_product": 105,
+    "product_name": "Blushing Bromeliad",
+    "price": 139,
+    "img": "../img/catalog/105.jpg",
+    "size": "large",
+    "category": ["House plants","Potter plants", "Big plants"],
+    "date_arrival": "07.05.2021" 
+  },
+  {
+    "id_product": 106,
+    "product_name": "Aluminum Plant",
+    "price": 179,
+    "img": "../img/catalog/106.jpg",
+    "size": "small",
+    "category": ["House plants", "Small plants", "Succulents"],
+    "date_arrival": "08.05.2022" 
+  },
+  {
+    "id_product": 107,
+    "product_name": "Bird's Nest Fern",
+    "price": 99,
+    "img": "../img/catalog/107.jpg",
+    "size": "medium",
+    "category": ["House plants", "Big plants", "Succulents"],
+    "date_arrival": "12.12.2022" 
+  },
+  {
+    "id_product": 108,
+    "product_name": "Broadleaf Lady Palm",
+    "price": 59,
+    "img": "../img/catalog/108.jpg",
+    "size": "small",
+    "category": ["House plants", "Small plants", "Succulents", "Trerrariums"],
+    "date_arrival": "01.07.2020" 
+  },
+  {
+    "id_product": 109,
+    "product_name": "Chinese Evergreen",
+    "price": 39,
+    "img": "../img/catalog/109.jpg",
+    "size": "small",
+    "category": ["House plants", "Small plants", "Succulents"],
+    "date_arrival": "09.05.2022" 
+  }
+]

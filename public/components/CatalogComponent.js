@@ -1,3 +1,4 @@
+// const moment = require('moment');
 const product = {
     props: ['product'],
     template: `
@@ -30,23 +31,86 @@ const product = {
     `
 };
 
-const catalog = {
+Vue.component("All plants", {
+    props: ['filtered', 'selectedSizes'],
     components: { product },
+    computed: {
+        filteredSizes() {
+            
+            if (!this.selectedSizes.length) 
+                return this.filtered;
+            
+            return this.filtered.filter(product => {
+                return this.selectedSizes.includes(product.size);
+            });
+        }
+    },
+    template: `
+                <section class="catalog_products">
+                    <product 
+                        v-for="product of filteredSizes" 
+                        :key="product.id_product"
+                        :product="product"
+                    >
+                    </product>
+                </section>
+    `
+    //     v-for="product of filtered" 
+
+});
+// сделать фильтрацию по дате
+Vue.component("New arrivals", {
+    props: ['products'],
+    data () {
+        return {
+            filteredByDate: [],
+        }
+    },
+    components: { product },
+    mounted () {
+        // this.filteredByDate = this.products.sort((a,b) => moment(b.date_arrival, 'DD.MM.YY') - moment(a.date_arrival, 'DD.MM.YY'));
+    },
+    methods: {
+    },
+    // template: `
+    //             <section class="catalog_products">
+    //             <p>{{ currentDate }}</p>
+    //                 <product 
+    //                     v-for="product of filteredByDate" 
+    //                     :key="product.id_product"
+    //                     :product="product"
+    //                 >
+    //                 </product>
+    //             </section>
+    // `
+});
+// сделать фильтрацию по наличию скидки
+Vue.component("Sale", {
+    template: "<div>Sale component</div>"
+});
+
+const catalog = {
     data () {
         return {
             products: [],
             filtered: [],
+            currentTab: "All plants",
+            tabs: ["All plants", "New arrivals", "Sale"]
+        }
+    },
+    computed: {
+        currentTabComponent: function() {
+            return this.currentTab;
         }
     },
     mounted () {
-        // this.$parent.getJson(`${API + this.catalogUrl}`)
-        this.$parent.getJson(`../DB/getProducts.json`)
-           .then(data => {
-               for(let el of data){
-                   this.products.push(el);
-                   this.filtered.push(el);
-               }
-           });
+        this.$parent.getJson(`/api/products`)
+            .then(data => {
+                for(let el of data){
+                    this.$data.products.push(el);
+                    this.$data.filtered.push(el);
+                }
+            });
     },
     methods: {
         filter(value) {
@@ -59,21 +123,31 @@ const catalog = {
                     
                     <div class="catalog_nav">
                         <ul class="catalog_nav">
-                            <li class="catalog_nav-accent">All plants</li>
-                            <li>New arrivals</li>
-                            <li>Sale</li>
+                            <li 
+                                v-for="tab in tabs"
+                                v-bind:key="tab"
+                                v-bind:class="['catalog_nav-tab', { active: currentTab === tab }]"
+                                v-on:click="currentTab = tab"
+                            >
+                                {{ tab }}
+                            </li>
                         </ul>
                     </div>
                     
-                    <section class="catalog_products">
-                        <product 
-                        v-for="product of filtered" 
-                        :key="product.id_product"
-                        :product="product"
-                        >
-                        </product>
-                    </section>
+                    <component 
+                        v-bind:is="currentTabComponent" 
+                        class="tab"
+                        :filtered="filtered"
+                        :products="products"
+                        :selectedSizes="$parent.$refs.filterCustom.selectedSizes"
+                    >
+                    </component>
                 
                 </div>
     `
 };
+
+export default {
+    catalog: catalog,
+    product: product
+}
